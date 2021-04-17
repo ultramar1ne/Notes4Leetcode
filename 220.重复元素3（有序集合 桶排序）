@@ -1,0 +1,32 @@
+###### tags: `LeetCode`
+# 存在重複元素2
+
+我的完成：
+```python=
+class Solution:
+    def containsNearbyDuplicate(self, nums: List[int], k: int) -> bool:
+        A=dict()
+        for i in range(len(nums)):
+            if nums[i] not in A:
+                A[nums[i]]=[i]
+            else:
+                temp=A[nums[i]]
+                temp.append(i)
+                A[nums[i]] =temp
+                if abs(temp[-1]-temp[-2])<=k:
+                    return True
+        return False
+```
+# 存在重复元素3
+官方题解：
+## 方法一：滑动窗口 + 有序集合
+在 C++ 中 set/multiset/map 内部元素是有序的，它们都基于红黑树实现。其中 set 会对元素去重，而 multiset 可以有重复元素，map 是 key 有序的哈希表。
+
+在 Java 中 TreeSet 是有序的去重集合，TreeMap 是 key 有序的哈希表，它们也是基于红黑树实现的。
+
+在 Python 中 sortedcontainers  实现了有序的容器。
+
+## 桶排序
+
+![](http://152.136.116.14:1023/uploads/upload_50d555f12499a7127221417b56bfbb8d.png)
+
